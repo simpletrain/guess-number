@@ -9,7 +9,7 @@ describe('AnswerGenerator', function() {
     var answerGenerator, jugeRepeat;
 
     beforeEach(function() {
-      answerGenerator = new AnswerGenerator();
+      answerGenerator = new AnswerGenerator(Math);
       jugeRepeat = function(string) {
         var k = 0;
         for (var i = 0; i < string.length; i++) {
@@ -26,19 +26,23 @@ describe('AnswerGenerator', function() {
         return false;
       };
     });
-    it('return a number', function() {
+
+    it('should a random number', function() {
+      var count = 0;
+      spyOn(Math, 'random').and.callFake(function() {
+        var randomnumbers = [0.1,0.1,0.2,0.3,0.4];
+        return randomnumbers[count++];
+      });
       var result = answerGenerator.create();
-      for(var i = 0;i<result.length;i++){
-        expect(isNaN(result[i])).toBe(false);
-      }
+      expect(result).toBe('1234');
     });
 
-    it('return a 4 figures', function() {
+    it('length should be 4', function() {
       var result = answerGenerator.create();
       expect(result.length).toBe(4);
     });
 
-    it('return a non-repeat number', function() {
+    it('each digit should not be repeat', function() {
       var result = answerGenerator.create();
       expect(jugeRepeat(result)).toBe(false);
     });
