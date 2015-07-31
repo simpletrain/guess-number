@@ -4,26 +4,21 @@ function CompareNumber() {
 
 }
 
-CompareNumber.prototype.compare = function(answer, input) {
-  var a = 0,b = 0;
-  var findInAnswer = function(answer, number, index) {
-    for (var i = 0; i < answer.length; i++) {
-      if (number === answer[i]) {
-        if (index === i) {
-          a++;
-        } else {
-          b++;
+CompareNumber.prototype.compare = function (answer, input) {
+    var countA = 0;
+    var countB = 0;
+
+    for (var i = 0; i < input.length; i++) {
+        var numberIndex = answer.indexOf(input[i]);
+
+        if (numberIndex === i) {
+            countA++;
+        } else if (numberIndex !== -1) {
+            countB++
         }
-      }
     }
-  };
-  for (var i = 0; i < input.length; i++) {
-    findInAnswer(answer, input[i], i);
-  }
-  return (a + 'A' + b + 'B');
+    return (countA + 'A' + countB + 'B');
 };
-
-
 
 
 module.exports = CompareNumber;
