@@ -30,8 +30,8 @@ describe('AnswerGenerator', function() {
     it('should a random number', function() {
       var count = 0;
       spyOn(Math, 'random').and.callFake(function() {
-        var randomnumbers = [0.1, 0.1, 0.2, 0.3, 0.4];
-        return randomnumbers[count++];
+        var randomNumbers = [0.1, 0.1, 0.2, 0.3, 0.4];
+        return randomNumbers[count++];
       });
       var result = answerGenerator.create();
       expect(result).toBe('1234');
