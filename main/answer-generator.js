@@ -1,13 +1,15 @@
 'use strict';
 
-function AnswerGenerator(math) {
-    this.Math = math;
+var _ = require('lodash');
+
+function AnswerGenerator() {
+
 }
 
 AnswerGenerator.prototype.create = function () {
     var randomNumberString = '';
     while (randomNumberString.length < 4) {
-        var randomNumber = this.Math.floor(this.Math.random() * 10);
+        var randomNumber = _.random(0,9);
         if (randomNumberString.indexOf('' + randomNumber) === -1) {
             randomNumberString += randomNumber;
         }

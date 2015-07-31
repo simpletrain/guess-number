@@ -1,6 +1,7 @@
 'use strict';
 
 var AnswerGenerator = require('../main/answer-generator.js');
+var _ = require('lodash');
 
 describe('AnswerGenerator', function () {
 
@@ -9,7 +10,7 @@ describe('AnswerGenerator', function () {
         var answerGenerator, judgeRepeat;
 
         beforeEach(function () {
-            answerGenerator = new AnswerGenerator(Math);
+            answerGenerator = new AnswerGenerator();
             judgeRepeat = function (string) {
                 for (var i = 0; i < string.length, i++;) {
                     if (string.lastIndexOf(string[i]) !== i) {
@@ -22,8 +23,8 @@ describe('AnswerGenerator', function () {
 
         it('should a random number', function () {
             var count = 0;
-            spyOn(Math, 'random').and.callFake(function () {
-                var randomNumbers = [0.1, 0.1, 0.2, 0.3, 0.4];
+            spyOn(_, 'random').and.callFake(function () {
+                var randomNumbers = [1, 1, 2, 3, 4];
                 return randomNumbers[count++];
             });
 
